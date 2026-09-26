@@ -199,7 +199,7 @@
             border-color: var(--accent-color);
         }
 
-        /* Portfolio Grid with Eye-Catching Animations */
+        /* Portfolio Grid */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -231,7 +231,7 @@
         .media-box {
             position: relative;
             width: 100%;
-            height: 240px;
+            height: 260px;
             overflow: hidden;
             background: #000;
         }
@@ -243,12 +243,59 @@
             transition: transform 0.6s ease, filter 0.6s ease;
         }
 
-        .portfolio-item:hover .media-box img {
-            transform: scale(1.1);
-            filter: brightness(0.85);
+        /* Slider Styles for Wedding Photography */
+        .slider-box {
+            position: relative;
         }
 
-        /* Eye-Catching Overlay Tags */
+        .slides {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 5;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-btn:hover {
+            background: var(--accent-color);
+        }
+
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        /* Overlay Tags */
         .click-tag {
             position: absolute;
             top: 15px;
@@ -261,7 +308,7 @@
             font-weight: 600;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            z-index: 2;
+            z-index: 4;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -535,7 +582,6 @@
                 <a href="#tools">Tools</a>
                 <a href="#contact">Contact</a>
             </nav>
-            <!-- Theme Toggle Button -->
             <button class="theme-toggle-btn" id="themeToggle" title="Toggle Light/Dark Mode">
                 <i class="fa-solid fa-sun" id="themeIcon"></i>
             </button>
@@ -556,93 +602,65 @@
         <!-- Category Filter Buttons -->
         <div class="filter-container">
             <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="editing">Video Editing & Reels</button>
+            <button class="filter-btn" data-filter="photography">Wedding Photography</button>
             <button class="filter-btn" data-filter="videography">Videography</button>
-            <button class="filter-btn" data-filter="photography">Photography & Design</button>
+            <button class="filter-btn" data-filter="editing">Video Editing</button>
         </div>
 
-        <!-- Portfolio Grid with Your Images -->
+        <!-- Portfolio Grid -->
         <div class="portfolio-grid">
             
-            <!-- العمل الأول -->
+            <!-- 1. خانة الأعراس المخصصة للصور الـ 6 -->
+            <div class="portfolio-item wedding-card" data-category="photography">
+                <div class="media-box slider-box">
+                    <span class="click-tag"><i class="fa-solid fa-camera"></i> Wedding Photos</span>
+                    
+                    <!-- معرض صور الأعراس -->
+                    <div class="slides">
+                        <img class="slide active" src="https://i.postimg.cc/JzLZ2Ykf/IMG-0659.jpg" alt="Wedding Photo 1">
+                        <img class="slide" src="https://i.postimg.cc/VLMX4PJ8/IMG-0660.jpg" alt="Wedding Photo 2">
+                        <img class="slide" src="https://i.postimg.cc/XYbdz15Z/IMG-1576.jpg" alt="Wedding Photo 3">
+                        <img class="slide" src="https://i.postimg.cc/T2KVLDxs/IMG-1644.jpg" alt="Wedding Photo 4">
+                        <img class="slide" src="https://i.postimg.cc/J4yk0VNy/IMG-20260816-181021-809.webp" alt="Wedding Photo 5">
+                        <img class="slide" src="https://i.postimg.cc/MZ3BzKQz/IMG-20260816-181022-078.webp" alt="Wedding Photo 6">
+                    </div>
+
+                    <!-- أسهم التنقل بين صور الزفاف -->
+                    <button class="slide-btn prev-btn" onclick="changeSlide(-1, event)">&#10094;</button>
+                    <button class="slide-btn next-btn" onclick="changeSlide(1, event)">&#10095;</button>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Wedding Photography</h3>
+                    <p>Traditional wedding shoots, emotional moments & professional retouching.</p>
+                    <span class="badge">Wedding Photography</span>
+                </div>
+            </div>
+
+            <!-- 2. خانة Videography (تاركينها منفصلة للفيديوهات) -->
+            <a href="https://www.instagram.com/mohammed4os" target="_blank" class="portfolio-item" data-category="videography">
+                <div class="media-box">
+                    <span class="click-tag"><i class="fa-solid fa-video"></i> 4K Video</span>
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=80" alt="Videography Project">
+                    <i class="fa-solid fa-circle-play play-icon"></i>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Cinematic Videography</h3>
+                    <p>Multi-camera live recording with smooth gimbal movement.</p>
+                    <span class="badge">Videography</span>
+                </div>
+            </a>
+
+            <!-- 3. خانة Video Editing (مخصصة للمونتاج والرليز) -->
             <a href="https://www.instagram.com/mohammed4os" target="_blank" class="portfolio-item" data-category="editing">
                 <div class="media-box">
                     <span class="click-tag"><i class="fa-solid fa-play"></i> Watch Reel</span>
-                    <img src="https://i.postimg.cc/JzLZ2Ykf/IMG-0659.jpg" alt="Commercial Reel Edit">
+                    <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=700&q=80" alt="Video Editing Project">
                     <i class="fa-solid fa-circle-play play-icon"></i>
                 </div>
                 <div class="portfolio-info">
                     <h3>Commercial Promo Reel</h3>
                     <p>Dynamic cuts, fast pacing & professional sound design.</p>
                     <span class="badge">Video Editing</span>
-                </div>
-            </a>
-
-            <!-- العمل الثاني -->
-            <a href="https://www.instagram.com/mohammed4os" target="_blank" class="portfolio-item" data-category="videography">
-                <div class="media-box">
-                    <span class="click-tag"><i class="fa-solid fa-video"></i> 4K Quality</span>
-                    <img src="https://i.postimg.cc/VLMX4PJ8/IMG-0660.jpg" alt="Event Highlights">
-                    <i class="fa-solid fa-circle-play play-icon"></i>
-                </div>
-                <div class="portfolio-info">
-                    <h3>Cinematic Event Coverage</h3>
-                    <p>Multi-camera live recording with smooth movement.</p>
-                    <span class="badge">Videography</span>
-                </div>
-            </a>
-
-            <!-- العمل الثالث -->
-            <a href="https://www.instagram.com/mohammed4os" target="_blank" class="portfolio-item" data-category="photography">
-                <div class="media-box">
-                    <span class="click-tag"><i class="fa-solid fa-camera"></i> Photo Shoot</span>
-                    <img src="https://i.postimg.cc/XYbdz15Z/IMG-1576.jpg" alt="Brand Shoot">
-                </div>
-                <div class="portfolio-info">
-                    <h3>Product & Brand Photography</h3>
-                    <p>Studio lighting setup and high-end photo retouching.</p>
-                    <span class="badge">Photography</span>
-                </div>
-            </a>
-
-            <!-- العمل الرابع -->
-            <a href="https://www.instagram.com/mohammed4os" target="_blank" class="portfolio-item" data-category="editing">
-                <div class="media-box">
-                    <span class="click-tag"><i class="fa-brands fa-instagram"></i> Instagram Reel</span>
-                    <img src="https://i.postimg.cc/T2KVLDxs/IMG-1644.jpg" alt="Social Media Reel">
-                    <i class="fa-solid fa-circle-play play-icon"></i>
-                </div>
-                <div class="portfolio-info">
-                    <h3>Viral Short-Form Edit</h3>
-                    <p>Subtitles, motion graphics & sound effects.</p>
-                    <span class="badge">Video Editing</span>
-                </div>
-            </a>
-
-            <!-- العمل الخامس -->
-            <a href="https://www.instagram.com/mohammed4os" target="_blank" class="portfolio-item" data-category="photography">
-                <div class="media-box">
-                    <span class="click-tag"><i class="fa-solid fa-camera"></i> Creative Design</span>
-                    <img src="https://i.postimg.cc/J4yk0VNy/IMG-20260816-181021-809.webp" alt="Creative Project">
-                </div>
-                <div class="portfolio-info">
-                    <h3>Creative Visual Project</h3>
-                    <p>Custom branding and promotional visuals.</p>
-                    <span class="badge">Photography & Design</span>
-                </div>
-            </a>
-
-            <!-- العمل السادس -->
-            <a href="https://www.instagram.com/mohammed4os" target="_blank" class="portfolio-item" data-category="videography">
-                <div class="media-box">
-                    <span class="click-tag"><i class="fa-solid fa-film"></i> Showcase</span>
-                    <img src="https://i.postimg.cc/MZ3BzKQz/IMG-20260816-181022-078.webp" alt="Video Shoot">
-                    <i class="fa-solid fa-circle-play play-icon"></i>
-                </div>
-                <div class="portfolio-info">
-                    <h3>Video Production Showcase</h3>
-                    <p>High-quality video shoot and creative direction.</p>
-                    <span class="badge">Videography</span>
                 </div>
             </a>
 
@@ -662,8 +680,8 @@
                 <p>High-quality video recording for events, promos, and brand stories.</p>
             </div>
             <div class="service-card">
-                <h3>Graphic Design</h3>
-                <p>Creative visual assets, branding, and promotional materials tailored for digital media.</p>
+                <h3>Photography</h3>
+                <p>Wedding coverage, product shots, and professional photo retouching.</p>
             </div>
         </div>
     </section>
@@ -694,8 +712,8 @@
             </div>
             <div class="tool-card">
                 <div class="tool-icon-box"><i class="fa-solid fa-camera"></i></div>
-                <h4>Sony A7 IV</h4>
-                <p>Full-Frame Mirrorless</p>
+                <h4>Nikon D600</h4>
+                <p>DSLR Camera</p>
             </div>
         </div>
     </section>
@@ -735,6 +753,26 @@
 
     <!-- Scripts -->
     <script>
+        // Wedding Photos Slider Logic
+        let currentSlideIndex = 0;
+
+        function changeSlide(direction, event) {
+            if (event) event.preventDefault();
+            
+            const slides = document.querySelectorAll('.wedding-card .slide');
+            slides[currentSlideIndex].classList.remove('active');
+
+            currentSlideIndex += direction;
+
+            if (currentSlideIndex >= slides.length) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = slides.length - 1;
+            }
+
+            slides[currentSlideIndex].classList.add('active');
+        }
+
         // Category Filter Logic
         const filterBtns = document.querySelectorAll('.filter-btn');
         const portfolioItems = document.querySelectorAll('.portfolio-item');
@@ -760,7 +798,6 @@
         const themeToggleBtn = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         
-        // Load saved theme or default to dark
         const savedTheme = localStorage.getItem('theme') || 'dark';
         if (savedTheme === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
