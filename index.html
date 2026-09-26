@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Dark Theme Variables (Default) */
         :root {
             --bg-color: #0f0f12;
             --card-bg: #1a1a24;
@@ -14,6 +15,20 @@
             --whatsapp-color: #25d366;
             --text-color: #ffffff;
             --text-secondary: #a0a0ab;
+            --header-bg: rgba(15, 15, 18, 0.9);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Light Theme Variables */
+        [data-theme="light"] {
+            --bg-color: #f4f5f8;
+            --card-bg: #ffffff;
+            --accent-color: #e50914;
+            --whatsapp-color: #25d366;
+            --text-color: #111115;
+            --text-secondary: #555566;
+            --header-bg: rgba(244, 245, 248, 0.9);
+            --border-color: rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -21,6 +36,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         body {
@@ -35,12 +51,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 5%;
-            background: rgba(15, 15, 18, 0.9);
+            background: var(--header-bg);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 100;
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .logo {
@@ -54,6 +71,12 @@
             color: var(--accent-color);
         }
 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
         nav a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -65,6 +88,28 @@
             color: var(--accent-color);
         }
 
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -74,18 +119,19 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
-            background: linear-gradient(180deg, rgba(15,15,18,0.4) 0%, rgba(15,15,18,1) 100%), 
+            background: linear-gradient(180deg, rgba(15,15,18,0.5) 0%, var(--bg-color) 100%), 
                         url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1350&q=80') center/cover;
         }
 
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 10px;
+            color: #ffffff;
         }
 
         .hero p {
             font-size: 1.2rem;
-            color: var(--text-secondary);
+            color: #d0d0dc;
             max-width: 600px;
             margin-bottom: 25px;
         }
@@ -139,7 +185,7 @@
         .filter-btn {
             background: var(--card-bg);
             color: var(--text-secondary);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
             padding: 8px 20px;
             border-radius: 20px;
             cursor: pointer;
@@ -153,7 +199,7 @@
             border-color: var(--accent-color);
         }
 
-        /* Portfolio Grid */
+        /* Portfolio Grid with Eye-Catching Animations */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -162,13 +208,14 @@
 
         .portfolio-item {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            transition: 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             text-decoration: none;
             color: inherit;
             display: block;
+            border: 1px solid var(--border-color);
         }
 
         .portfolio-item.hide {
@@ -176,14 +223,15 @@
         }
 
         .portfolio-item:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(229, 9, 20, 0.25);
+            border-color: var(--accent-color);
         }
 
         .media-box {
             position: relative;
             width: 100%;
-            height: 220px;
+            height: 240px;
             overflow: hidden;
             background: #000;
         }
@@ -192,24 +240,54 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.5s;
+            transition: transform 0.6s ease, filter 0.6s ease;
         }
 
         .portfolio-item:hover .media-box img {
-            transform: scale(1.08);
-            opacity: 0.8;
+            transform: scale(1.1);
+            filter: brightness(0.85);
+        }
+
+        /* Eye-Catching Overlay Tags */
+        .click-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .click-tag i {
+            color: var(--accent-color);
         }
 
         .play-icon {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2.5rem;
+            transform: translate(-50%, -50%) scale(0.9);
+            font-size: 3rem;
+            color: #ffffff;
+            opacity: 0.85;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 15px rgba(229, 9, 20, 0.8);
+            z-index: 2;
+        }
+
+        .portfolio-item:hover .play-icon {
+            transform: translate(-50%, -50%) scale(1.15);
             color: var(--accent-color);
-            pointer-events: none;
-            opacity: 0.9;
-            transition: 0.3s;
+            opacity: 1;
         }
 
         .portfolio-info {
@@ -217,7 +295,7 @@
         }
 
         .portfolio-info h3 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             margin-bottom: 6px;
         }
 
@@ -231,9 +309,9 @@
             background: rgba(229, 9, 20, 0.15);
             color: var(--accent-color);
             font-size: 0.75rem;
-            padding: 3px 10px;
+            padding: 4px 12px;
             border-radius: 12px;
-            margin-top: 8px;
+            margin-top: 10px;
             font-weight: 600;
         }
 
@@ -250,15 +328,20 @@
             border-radius: 12px;
             text-align: center;
             transition: 0.3s;
+            border: 1px solid var(--border-color);
         }
 
         .service-card:hover {
-            border: 1px solid var(--accent-color);
+            border-color: var(--accent-color);
         }
 
         .service-card h3 {
             margin-bottom: 10px;
             color: var(--accent-color);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
         }
 
         /* Tools & Gear Section */
@@ -273,7 +356,7 @@
             background: var(--card-bg);
             padding: 25px 15px;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
             transition: 0.3s;
             position: relative;
         }
@@ -307,6 +390,7 @@
             border-radius: 15px;
             margin: 0 5% 50px 5%;
             padding: 50px 20px;
+            border: 1px solid var(--border-color);
         }
 
         .contact p {
@@ -358,8 +442,8 @@
         }
 
         .btn-email {
-            background-color: #333;
-            color: white;
+            background-color: var(--card-bg);
+            color: var(--text-color);
             text-decoration: none;
             padding: 12px 25px;
             border-radius: 30px;
@@ -368,7 +452,7 @@
             align-items: center;
             gap: 8px;
             transition: 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
         }
 
         .btn-email:hover {
@@ -390,7 +474,7 @@
             justify-content: center;
             align-items: center;
             font-size: 32px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             z-index: 999;
             text-decoration: none;
             transition: 0.3s;
@@ -411,7 +495,7 @@
         footer {
             text-align: center;
             padding: 30px 20px;
-            border-top: 1px solid #222;
+            border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
             font-size: 0.85rem;
         }
@@ -444,12 +528,18 @@
     <!-- Header -->
     <header>
         <div class="logo">MOHAMMED<span>.</span></div>
-        <nav>
-            <a href="#work">Work</a>
-            <a href="#services">Services</a>
-            <a href="#tools">Tools</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <div class="header-actions">
+            <nav>
+                <a href="#work">Work</a>
+                <a href="#services">Services</a>
+                <a href="#tools">Tools</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle-btn" id="themeToggle" title="Toggle Light/Dark Mode">
+                <i class="fa-solid fa-sun" id="themeIcon"></i>
+            </button>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -471,56 +561,60 @@
             <button class="filter-btn" data-filter="photography">Photography & Design</button>
         </div>
 
-        <!-- Portfolio Items -->
+        <!-- Portfolio Grid -->
         <div class="portfolio-grid">
             
-            <!-- Item 1: Editing -->
+            <!-- Item 1: Commercial Edit -->
             <a href="https://www.instagram.com/mohammed4os" target="_blank" class="portfolio-item" data-category="editing">
                 <div class="media-box">
-                    <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=600&q=80" alt="Video Editing">
+                    <span class="click-tag"><i class="fa-solid fa-play"></i> Watch Reel</span>
+                    <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=700&q=80" alt="Commercial Reel Edit">
                     <i class="fa-solid fa-circle-play play-icon"></i>
                 </div>
                 <div class="portfolio-info">
-                    <h3>Commercial Reel Edit</h3>
-                    <p>Dynamic cuts, sound design & color grading for promotional reels.</p>
+                    <h3>Commercial Promo Reel</h3>
+                    <p>Dynamic cuts, fast pacing & professional sound design for ads.</p>
                     <span class="badge">Video Editing</span>
                 </div>
             </a>
 
-            <!-- Item 2: Videography -->
+            <!-- Item 2: Event Videography -->
             <a href="https://www.instagram.com/mohammed4os" target="_blank" class="portfolio-item" data-category="videography">
                 <div class="media-box">
-                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80" alt="Videography">
-                    <i class="fa-solid fa-video play-icon"></i>
+                    <span class="click-tag"><i class="fa-solid fa-video"></i> 4K Quality</span>
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=80" alt="Event Highlights">
+                    <i class="fa-solid fa-circle-play play-icon"></i>
                 </div>
                 <div class="portfolio-info">
-                    <h3>Event Highlights</h3>
-                    <p>Cinematic coverage and multi-camera live video recording.</p>
+                    <h3>Cinematic Event Coverage</h3>
+                    <p>Multi-camera live recording with smooth gimbal movement.</p>
                     <span class="badge">Videography</span>
                 </div>
             </a>
 
-            <!-- Item 3: Photography -->
+            <!-- Item 3: Brand Photography -->
             <a href="https://www.instagram.com/mohammed4os" target="_blank" class="portfolio-item" data-category="photography">
                 <div class="media-box">
-                    <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=600&q=80" alt="Photography">
+                    <span class="click-tag"><i class="fa-solid fa-camera"></i> Photo Shoot</span>
+                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=700&q=80" alt="Brand Shoot">
                 </div>
                 <div class="portfolio-info">
-                    <h3>Product & Brand Shoot</h3>
-                    <p>Professional studio lighting and high-end photo editing.</p>
+                    <h3>Product & Brand Photography</h3>
+                    <p>Studio lighting setup and high-end photo retouching.</p>
                     <span class="badge">Photography</span>
                 </div>
             </a>
 
-            <!-- Item 4: Editing -->
+            <!-- Item 4: Reels / Short Content -->
             <a href="https://www.instagram.com/mohammed4os" target="_blank" class="portfolio-item" data-category="editing">
                 <div class="media-box">
-                    <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=600&q=80" alt="Social Media Reel">
+                    <span class="click-tag"><i class="fa-brands fa-instagram"></i> Instagram Reel</span>
+                    <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=700&q=80" alt="Social Media Reel">
                     <i class="fa-solid fa-circle-play play-icon"></i>
                 </div>
                 <div class="portfolio-info">
-                    <h3>Instagram Promo Reel</h3>
-                    <p>Fast-paced social media editing with dynamic transitions.</p>
+                    <h3>Viral Short-Form Edit</h3>
+                    <p>Subtitles, motion graphics & sound effects for maximum engagement.</p>
                     <span class="badge">Video Editing</span>
                 </div>
             </a>
@@ -612,8 +706,9 @@
         <p>&copy; 2026 Mohammed. All rights reserved.</p>
     </footer>
 
-    <!-- Filter Script -->
+    <!-- Scripts -->
     <script>
+        // Category Filter Logic
         const filterBtns = document.querySelectorAll('.filter-btn');
         const portfolioItems = document.querySelectorAll('.portfolio-item');
 
@@ -632,6 +727,30 @@
                     }
                 });
             });
+        });
+
+        // Dark / Light Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        // Load saved theme or default to dark
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
         });
     </script>
 
