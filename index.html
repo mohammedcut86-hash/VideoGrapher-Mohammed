@@ -12,7 +12,6 @@
             --card-bg: #1a1a24;
             --accent-color: #e50914;
             --whatsapp-color: #25d366;
-            --instagram-color: #e1306c;
             --text-color: #ffffff;
             --text-secondary: #a0a0ab;
         }
@@ -276,17 +275,19 @@
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: 0.3s;
+            position: relative;
         }
 
         .tool-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent-color);
+            box-shadow: 0 5px 20px rgba(229, 9, 20, 0.2);
         }
 
-        .tool-card i {
-            font-size: 2.2rem;
-            color: var(--accent-color);
+        .tool-icon-box {
+            font-size: 2.5rem;
             margin-bottom: 12px;
+            color: var(--accent-color);
         }
 
         .tool-card h4 {
@@ -551,29 +552,29 @@
         <h2 class="section-title">Tools & Software</h2>
         <div class="tools-grid">
             <div class="tool-card">
-                <i class="fa-solid fa-film"></i>
+                <div class="tool-icon-box"><i class="fa-solid fa-film"></i></div>
                 <h4>Premiere Pro</h4>
                 <p>Video Editing & Color</p>
             </div>
             <div class="tool-card">
-                <i class="fa-solid fa-image"></i>
+                <div class="tool-icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                 <h4>Photoshop</h4>
                 <p>Image Retouching</p>
             </div>
             <div class="tool-card">
-                <i class="fa-solid fa-pen-nib"></i>
+                <div class="tool-icon-box"><i class="fa-solid fa-bezier-curve"></i></div>
                 <h4>Illustrator</h4>
                 <p>Vector Branding</p>
             </div>
             <div class="tool-card">
-                <i class="fa-solid fa-scissors"></i>
+                <div class="tool-icon-box"><i class="fa-solid fa-scissors"></i></div>
                 <h4>CapCut</h4>
                 <p>Fast Reel Production</p>
             </div>
             <div class="tool-card">
-                <i class="fa-solid fa-camera-retro"></i>
-                <h4>Nikon D600</h4>
-                <p>Professional DSLR</p>
+                <div class="tool-icon-box"><i class="fa-solid fa-camera"></i></div>
+                <h4>Sony A7 IV</h4>
+                <p>Full-Frame Mirrorless</p>
             </div>
         </div>
     </section>
