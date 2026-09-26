@@ -262,6 +262,43 @@
             color: var(--accent-color);
         }
 
+        /* Tools & Gear Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            padding: 25px 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .tool-card i {
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+        }
+
+        .tool-card h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .tool-card p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
         /* Contact Section */
         .contact {
             text-align: center;
@@ -409,6 +446,7 @@
         <nav>
             <a href="#work">Work</a>
             <a href="#services">Services</a>
+            <a href="#tools">Tools</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
@@ -504,6 +542,38 @@
             <div class="service-card">
                 <h3>Graphic Design</h3>
                 <p>Creative visual assets, branding, and promotional materials tailored for digital media.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools & Gear Section -->
+    <section id="tools">
+        <h2 class="section-title">Tools & Software</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <i class="fa-solid fa-film"></i>
+                <h4>Premiere Pro</h4>
+                <p>Video Editing & Color</p>
+            </div>
+            <div class="tool-card">
+                <i class="fa-solid fa-image"></i>
+                <h4>Photoshop</h4>
+                <p>Image Retouching</p>
+            </div>
+            <div class="tool-card">
+                <i class="fa-solid fa-pen-nib"></i>
+                <h4>Illustrator</h4>
+                <p>Vector Branding</p>
+            </div>
+            <div class="tool-card">
+                <i class="fa-solid fa-scissors"></i>
+                <h4>CapCut</h4>
+                <p>Fast Reel Production</p>
+            </div>
+            <div class="tool-card">
+                <i class="fa-solid fa-camera-retro"></i>
+                <h4>Nikon D600</h4>
+                <p>Professional DSLR</p>
             </div>
         </div>
     </section>
